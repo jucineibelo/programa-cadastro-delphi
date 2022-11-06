@@ -1,0 +1,182 @@
+object FrmPrincipal: TFrmPrincipal
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Cadastro de Clientes'
+  ClientHeight = 362
+  ClientWidth = 772
+  Color = cl3DLight
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 188
+    Width = 33
+    Height = 13
+    Caption = 'C'#243'digo'
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 234
+    Width = 27
+    Height = 13
+    Caption = 'Nome'
+  end
+  object Label3: TLabel
+    Left = 469
+    Top = 234
+    Width = 28
+    Height = 13
+    Caption = 'E-mail'
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 288
+    Width = 772
+    Height = 74
+    Align = alBottom
+    Color = 16638099
+    ParentBackground = False
+    TabOrder = 0
+    object BtnIncluir: TButton
+      Left = 8
+      Top = 24
+      Width = 121
+      Height = 33
+      Caption = 'Incluir'
+      TabOrder = 0
+      OnClick = BtnIncluirClick
+    end
+    object BtnAlterar: TButton
+      Left = 168
+      Top = 24
+      Width = 121
+      Height = 33
+      Caption = 'Alterar'
+      TabOrder = 1
+      OnClick = BtnAlterarClick
+    end
+    object BtnGravar: TButton
+      Left = 326
+      Top = 24
+      Width = 121
+      Height = 33
+      Caption = 'Gravar'
+      TabOrder = 2
+      OnClick = BtnGravarClick
+    end
+    object BtnCancelar: TButton
+      Left = 485
+      Top = 24
+      Width = 121
+      Height = 33
+      Caption = 'Cancelar'
+      TabOrder = 3
+      OnClick = BtnCancelarClick
+    end
+    object BtnExcluir: TButton
+      Left = 640
+      Top = 24
+      Width = 121
+      Height = 33
+      Caption = 'Excluir'
+      TabOrder = 4
+      OnClick = BtnExcluirClick
+    end
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 0
+    Width = 772
+    Height = 182
+    Align = alTop
+    DataSource = DsClientes
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+  end
+  object EdtId: TDBEdit
+    Left = 8
+    Top = 207
+    Width = 57
+    Height = 21
+    DataField = 'ID'
+    DataSource = DsClientes
+    TabOrder = 2
+  end
+  object EdtNome: TDBEdit
+    Left = 8
+    Top = 253
+    Width = 409
+    Height = 21
+    CharCase = ecUpperCase
+    DataField = 'NOME'
+    DataSource = DsClientes
+    TabOrder = 3
+  end
+  object EdtEmail: TDBEdit
+    Left = 469
+    Top = 253
+    Width = 292
+    Height = 21
+    CharCase = ecLowerCase
+    DataField = 'EMAIL'
+    DataSource = DsClientes
+    TabOrder = 4
+  end
+  object Conexao: TFDConnection
+    Params.Strings = (
+      'Database=C:\Projeto\DADOS_CADASTRO.FDB'
+      'User_Name=SYSDBA'
+      'Password=masterkey'
+      'DriverID=FB')
+    Connected = True
+    LoginPrompt = False
+    Left = 672
+    Top = 16
+  end
+  object QryClientes: TFDQuery
+    Connection = Conexao
+    SQL.Strings = (
+      'select * from clientes')
+    Left = 672
+    Top = 72
+    object QryClientesID: TIntegerField
+      AutoGenerateValue = arAutoInc
+      FieldName = 'ID'
+      Origin = 'ID'
+    end
+    object QryClientesNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 45
+    end
+    object QryClientesEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Origin = 'EMAIL'
+      Size = 25
+    end
+  end
+  object DsClientes: TDataSource
+    DataSet = QryClientes
+    Left = 672
+    Top = 128
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 592
+    Top = 16
+  end
+end
